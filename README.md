@@ -12,4 +12,4 @@ kNN расшифровывается как k Nearest Neighbor или k Ближ
   <li>Класс классифицируемого объекта — это класс, наиболее часто встречающийся среди k ближайших соседей</li>
 </ul>
 
- <img src="https://test.basel.in/wp-content/uploads/2019/06/KNN-1.jpg"> 
+ <img src="https://test.basel.in/wp-content/uploads/2019/06/KNN-1.jpg" width="500" height="500"> 
