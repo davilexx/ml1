@@ -64,3 +64,22 @@ sortObjectsByDist <- function(xl, z, metricFunction = euclideanDistance)
   return (orderedXl);
 }
 ```
+
+Применяем метод kNN: сортируем выборку согласно классифицируемого объекта, получаем классы первых k соседей, составляем таблицу встречаемости каждого класса и находим класс, который доминирует среди первых k соседей
+
+```R
+kNN <- function(xl, z, k)
+{
+  
+  orderedXl <- sortObjectsByDist(xl, z)
+  n <- dim(orderedXl)[2] - 1
+  
+  classes <- orderedXl[1:k, n + 1]
+  
+  counts <- table(classes)
+  
+  class <- names(which.max(counts))
+  
+  return (class)
+}
+```
