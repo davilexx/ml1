@@ -75,7 +75,7 @@ colors <-c("setosa" = "red", "versicolor" = "green3", "virginica" = "blue")
 plot(iris[, 3:4], pch = 21, bg = colors[iris$Species], col = colors[iris$Species], asp = 1)
 ```
 
-Классификация одного заданногго объекта
+Классификация одного заданного объекта
 
 ```R
 z <- c(2.7, 1)
@@ -84,4 +84,8 @@ class <- kNN(xl, z, k=6)
 points(z[1], z[2], pch = 22, bg = colors[class], asp = 1)
 ```
 
+Результатом кода будет это:
+
 ![result](result.png)
+
+На изображении выше показана классификация выбранного объекта. Он обозначен квадратом. В качестве координат была взята точка (2.7, 1).
