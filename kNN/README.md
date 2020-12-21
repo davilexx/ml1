@@ -21,6 +21,6 @@ kNN <- function(xl, z, k) {
 
 ### Карта классификации для 6NN
 
-![result](result.png)
+![result](kNN_kk.png)
 
 <a href="https://github.com/davilexx/ml1">На главную</a>
