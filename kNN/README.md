@@ -20,7 +20,8 @@ kNN <- function(xl, z, k) {
 После завершения алгоритма LOO, получаем оптимальное k = 6.
 
 ### Карта классификации для 6NN
+<br/><br/>
 
-![result](kNN_kk.png)
+<img src="kNN_kk.png" width="600">
 
 <a href="https://github.com/davilexx/ml1">На главную</a>
