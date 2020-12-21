@@ -24,6 +24,10 @@ NN <- function(xl, z) {
 
 <img src="1NN_iris.png" width=600>
 
+### Карта классификации для 1NN
+
+<img src="1nn_kk.png" width=600>
+
 Преимущество:
 <ul>
 <li>простота реализации</li>
