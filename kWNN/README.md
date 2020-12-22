@@ -23,6 +23,12 @@ kWNN <- function(xl, z, k, q) {
 }
 ```
 
+### Карта классификации для kWNN
+<br/>
+<br/>
+
+<img src="kWNN_kk.png" width="600">
+
 Преимущества:
 <ul>
   <li>простота реализации</li>
