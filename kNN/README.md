@@ -24,8 +24,6 @@ kNN <- function(xl, z, k) {
 
 <img src="kNN_kk.png" width="600">
 
-<a href="https://github.com/davilexx/ml1">На главную</a>
-
 Преимущества:
 <ul>
 <li>простота реализации</li>
@@ -38,3 +36,5 @@ kNN <- function(xl, z, k) {
 <li>требуется хранить полную выборку</li>
 <li>качество алгоритма сильно зависит от выбранной метрики</li>
 </ul>
+
+<a href="https://github.com/davilexx/ml1">На главную</a>
