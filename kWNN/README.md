@@ -5,31 +5,22 @@
 ### Программная реализация на языке R
 
 ```R
-colors <- c("class-1" = "red", "class-2" = "green3", "class-3" = "blue")
+weight <- function(i, k, q) {
+  return (q ^ i)
+}
 
-df = data.frame(x = double(), y = double(), class = character())
-
-df <- rbind(df, data.frame(x = 1, y = 0.1, class = "class-1"))
-df <- rbind(df, data.frame(x = 1.15, y = 0.15, class = "class-1"))
-df <- rbind(df, data.frame(x = 1.1, y = 0.1, class = "class-1"))
-df <- rbind(df, data.frame(x = 1.5, y = 0.2, class = "class-2"))
-df <- rbind(df, data.frame(x = 1.35, y = 0.2, class = "class-2"))
-df <- rbind(df, data.frame(x = 1.3, y = 0.25, class = "class-2"))
-df <- rbind(df, data.frame(x = 1.5, y = 0.25, class = "class-2"))
-df <- rbind(df, data.frame(x = 1.35, y = 0.3, class = "class-2"))
-df <- rbind(df, data.frame(x = 1.4, y = 0.25, class = "class-2"))
-df <- rbind(df, data.frame(x = 1.4, y = 0.25, class = "class-2"))
-df <- rbind(df, data.frame(x = 3, y = 0.85, class = "class-3"))
-df <- rbind(df, data.frame(x = 3.2, y = 0.9, class = "class-3"))
-df <- rbind(df, data.frame(x = 3.25, y = 1, class = "class-3"))
-df <- rbind(df, data.frame(x = 3.1, y = 0.8, class = "class-3"))
-df <- rbind(df, data.frame(x = 3.15, y = 0.85, class = "class-3"))
-plot(df[c("x", "y")], pch = 19, col = colors[df$class])
-
-z <- c(1.2, 0.15)
-class <- kWNN(df, z, k = 7, q = 0.56)
-print(class)
-points(z[1], z[2], pch = 22, bg = colors[class], asp = 1)
+kWNN <- function(xl, z, k, q) {
+  orderedXl <- sortObjectsByDist(xl, z)
+  n <- dim(orderedXl)[2] - 1
+  weights <- rep(0,3)
+  names(weights) <- c("setosa", "versicolor", "virginica")
+  classes <- orderedXl[1:k, n + 1]
+  for(i in 1:k) {
+    weights[classes[i]] <- weight(i,k,q) + weights[classes[i]];
+  }
+  class <- names(which.max(weights))
+  return(class)
+}
 ```
 
 Преимущества:
