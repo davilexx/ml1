@@ -1,34 +1,12 @@
 # Сравнение kNN и kWNN
 
-Рассмотрим искуственную выборку с двумя классами и одной входной точкой, которую необходимо проклассифицировать. На первом графике представлена работа kNN и видно, что метод классифицирует точку ко второму классу. На втором графике работа kWNN и относит точку к первому классу. Таким образом, можно увидеть, что на некоторых выборках kWNN будет работать точнее, чем kNN.
+Рассмотрим искуственную выборку с двумя классами и одной входной точкой, которую необходимо проклассифицировать.
 
-### Программная реализация на языке R
+<div style="display: inline;">
+<div><img src="kNN.png" width="450"></div>
+<div><img src="kWNN.png" width="450"></div>
+</div>
 
-```R
-colors <- c("class-1" = "red", "class-2" = "green3", "class-3" = "blue")
+На первом графике представлена работа kNN и видно, что метод классифицирует точку ко второму классу. На втором графике работа kWNN и относит точку к первому классу. Таким образом, можно увидеть, что на некоторых выборках kWNN будет работать точнее, чем kNN.
 
-df = data.frame(x = double(), y = double(), class = character())
-
-df <- rbind(df, data.frame(x = 1, y = 0.1, class = "class-1"))
-df <- rbind(df, data.frame(x = 1.15, y = 0.15, class = "class-1"))
-df <- rbind(df, data.frame(x = 1.1, y = 0.1, class = "class-1"))
-df <- rbind(df, data.frame(x = 1.5, y = 0.2, class = "class-2"))
-df <- rbind(df, data.frame(x = 1.35, y = 0.2, class = "class-2"))
-df <- rbind(df, data.frame(x = 1.3, y = 0.25, class = "class-2"))
-df <- rbind(df, data.frame(x = 1.5, y = 0.25, class = "class-2"))
-df <- rbind(df, data.frame(x = 1.35, y = 0.3, class = "class-2"))
-df <- rbind(df, data.frame(x = 1.4, y = 0.25, class = "class-2"))
-df <- rbind(df, data.frame(x = 1.4, y = 0.25, class = "class-2"))
-df <- rbind(df, data.frame(x = 3, y = 0.85, class = "class-3"))
-df <- rbind(df, data.frame(x = 3.2, y = 0.9, class = "class-3"))
-df <- rbind(df, data.frame(x = 3.25, y = 1, class = "class-3"))
-df <- rbind(df, data.frame(x = 3.1, y = 0.8, class = "class-3"))
-df <- rbind(df, data.frame(x = 3.15, y = 0.85, class = "class-3"))
-plot(df[c("x", "y")], pch = 19, col = colors[df$class])
-
-z <- c(1.2, 0.15)
-#class <- kNN(df, z, k=7)
-class <- kWNN(df, z, k=7, q=0.56)
-print(class)
-points(z[1], z[2], pch = 22, bg = colors[class], asp = 1)
-```
+<a href="https://github.com/davilexx/ml1">На главную</a>
