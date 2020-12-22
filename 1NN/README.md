@@ -4,17 +4,12 @@
 
 ![1NN](1nn.png)
 
-### Реализация на языке R
+### Программная реализация на языке R
 
 ```R
-## параметрами функции являются входной объект и выборка
 NN <- function(xl, z) {
-  
-  ## cортировка выборки
   orderedXl <- sortObjectsByDist(xl, z)
   n <- dim(orderedXl)[2] - 1
-  
-  ## выбор ближайшего класса
   classes <- orderedXl[1, n + 1]
   return (classes)
 }
