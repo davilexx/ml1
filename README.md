@@ -2,6 +2,7 @@
 <ul>
   <li><a href="https://github.com/davilexx/ml1/tree/master/1NN">1NN</a></li>
   <li><a href="https://github.com/davilexx/ml1/tree/master/kNN">kNN</a></li>
+  <li><a href="https://github.com/davilexx/ml1/tree/master/kWNN">kWNN</a></li>
 </ul>
 
 ### Линейные алгоритмы классификации
