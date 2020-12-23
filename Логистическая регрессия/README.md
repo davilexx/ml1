@@ -72,3 +72,5 @@ sigmoid <- function(z)
     <td><img src="ex4.png"></td>
   </tr>
 </table>
+
+<a href="https://github.com/davilexx/ml1">На главную</a>
