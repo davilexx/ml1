@@ -22,3 +22,5 @@ n-мерное нормальное (гауссовское) распредел�
 
 <img src="cds.png">
 <img src="correlated_diff_disp.png" width="600">
+
+<a href="https://github.com/davilexx/ml1">На главную</a>
