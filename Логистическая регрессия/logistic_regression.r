@@ -71,7 +71,7 @@ main <- function(ObjectsCountofEachClass) {
   xlNorm <- normal(xl)
   xlNorm <- base(xlNorm)
   colors <- c("green2", "red")
-  plot(xlNorm[, 1], xlNorm[, 2], pch = 21, asp = 1, main="Ëîãèñòè÷åñêàÿ ðåãðåññèÿ")
+  plot(xlNorm[, 1], xlNorm[, 2], pch = 21, asp = 1, main="")
   for (i in 1:dim(xlNorm)[1]) {
     points(xlNorm[i, 1], xlNorm[i, 2], pch = 21, bg = colors[ifelse((xl[i, 3] < 0), 1, 2)], asp = 1)
   }
