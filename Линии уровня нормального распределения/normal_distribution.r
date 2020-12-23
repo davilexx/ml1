@@ -20,4 +20,6 @@
     contour(x, y, z, levels = seq(0, 1, 0.05), main = title, drawlabels = T, asp = 1) 
   }
 
-lines_draw(c(0,0), matrix(c(1,0,0,3), nrow = 2, ncol = 2),  title = "Признаки некоррелированы")
+lines_draw(c(0,0), matrix(c(1,0,0,1), nrow = 2, ncol = 2),  title = "Признаки некоррелированы и имеют одинаковые дисперсии")
+#lines_draw(c(0,0), matrix(c(1,0,0,3), nrow = 2, ncol = 2),  title = "Признаки некоррелированы и имеют разные дисперсии")
+#lines_draw(c(0,0), matrix(c(1,1,0,1), nrow = 2, ncol = 2),  title = "Признаки коррелированы и имеют разные дисперсии")
