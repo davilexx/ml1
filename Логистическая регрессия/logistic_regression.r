@@ -1,23 +1,82 @@
-  lines_draw = function(mu, cov,  title) {  
-    det = det(cov)
-    a = cov[1,1]
-    b = cov[1,2]
-    c = cov[2,1]
-    d = cov[2,2]
-    mu1 = mu[1]
-    mu2 = mu[2]
-    A = d / det
-    B = (-b-c) / det
-    C = a/det
-    D = (-2 * d * mu1 + b * mu2 + c * mu2) / det
-    E = (b * mu1 + c * mu1 - 2 * a * mu2) / det
-    f = (d * mu1 * mu1 - b * mu1 * mu2 - c * mu1 * mu2 + a * mu2 * mu2) / det
-    
-    x = y = seq(-4, 4, 0.04 )
-    
-    z = outer(x, y, function(x, y) 1 / sqrt(2 * pi * d) * exp(-1 / 2 * (A * x * x + B * y * x + C * y * y + D * x + E * y + f)))
-    
-    contour(x, y, z, levels = seq(0, 1, 0.05), main = title, drawlabels = T, asp = 1) 
-  }
+oss <- function(x)
+{
+  return (log2(1 + exp(-x)))
+}
+sigmoid <- function(z)
+{
+  return (1 / (1 + exp(-z)))
+}
 
-lines_draw(c(0,0), matrix(c(1,0,0,3), nrow = 2, ncol = 2),  title = "Признаки некоррелированы")
+normal <- function(xl) {
+  n <- dim(xl)[2] - 1
+  for (i in 1:n) {
+    xl[, i] <- (xl[, i] - mean(xl[, i])) / sd(xl[, i])
+  }
+  return(xl)
+}
+
+base <- function(xl) {
+  l <- dim(xl)[1]
+  n <- dim(xl)[2] - 1
+  xl <- cbind(xl[, 1:n], seq(from = -1, to = -1, length.out = l), xl[, n + 1])
+}
+
+sg <- function(xl, eta = 0.2, lambda = 1/60) {
+  l <- dim(xl)[1]
+  n <- dim(xl)[2] - 1
+  w <- c(1/2, 1/2, 1/2)
+  iterCount <- 0
+  Q <- 0
+  for (i in 1:l) {
+    wx <- sum(w * xl[i, 1:n])
+    margin <- wx * xl[i, n + 1]
+    Q <- Q + loss(margin)
+  }
+  repeat {
+    margins <- array(dim = l)
+    for (i in 1:l)
+    {
+      xi <- xl[i, 1:n]
+      yi <- xl[i, n + 1]
+      margins[i] <- crossprod(w, xi) * yi 
+    }
+    errorIndexes <- which(margins <= 0) 
+    if (length(errorIndexes) > 0)
+    {
+      i <- sample(1:l, 1)
+      iterCount <- iterCount + 1
+      xi <- xl[i, 1:n]
+      yi <- xl[i, n + 1]
+      wx <- crossprod(w, xi)
+      margin <- wx * yi
+      ex <- loss(margin)
+      w <- w + eta * xi * yi * sigmoid(-wx * yi) 
+      Qprev <- Q
+      Q <- (1 - lambda) * Q + lambda * ex 
+    } else
+    {
+      break
+    }
+  }
+  return(w) 
+}
+
+main <- function(ObjectsCountofEachClass) {
+  library(MASS)
+  sigma <- matrix(c(3,0,0,7),2,2)
+  xy1 <- mvrnorm (ObjectsCountofEachClass,c(1,1),sigma)
+  xy2 <- mvrnorm (ObjectsCountofEachClass,c(9,7),sigma)
+  xl <- rbind(cbind(xy1, 1), cbind(xy2, -1))
+  ##print(xl);
+  xlNorm <- normal(xl)
+  xlNorm <- base(xlNorm)
+  colors <- c("green2", "red")
+  plot(xlNorm[, 1], xlNorm[, 2], pch = 21, asp = 1, main="Ëîãèñòè÷åñêàÿ ðåãðåññèÿ")
+  for (i in 1:dim(xlNorm)[1]) {
+    points(xlNorm[i, 1], xlNorm[i, 2], pch = 21, bg = colors[ifelse((xl[i, 3] < 0), 1, 2)], asp = 1)
+  }
+  w <- sg(xlNorm)
+  abline(a = w[3] / w[2], b = -w[1] / w[2], lwd = 3, col = "blue")
+}
+
+main(60)
