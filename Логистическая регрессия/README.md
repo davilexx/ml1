@@ -64,6 +64,7 @@ sigmoid <- function(z)
     <td><img src="ex1.png"></td>
     <td><img src="ex2.png"></td>
   </tr>
+  <tr></tr>
   <tr>
     <td><img src="ex3.png"></td>
     <td><img src="ex4.png"></td>
