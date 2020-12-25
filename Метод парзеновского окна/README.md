@@ -19,31 +19,33 @@ euclideanDistance <- function(u,v) {
   sqrt(sum((u - v)^2))
 }
 
+## прямоугольное ядро
 Rect <- function(r) {
   (abs(r) <= 1) * 0.5
 }
 
+## треугольное ядро
 Tria <- function(r) {
   (abs(r) <= 1) * (1 - abs(r))
 }
 
+## ядро епанечникова
 Epan <- function(r) {
   (abs(r) <= 1) * (1 - r^2)
 }
 
+## квартическое ядро
 Quar <- function(r) {
   (abs(r) <= 1) * (1 - r^2)^2
 }
 
-Gaus <- function(r) {
-  dnorm(r)
-}
-
+## присваиваем вес каждому объекту до элемента из выборки
 parsen <- function(x, z, h, F) {
   m <- dim(x)[1]
   n <- dim(x)[2]-1
   classes <- rep(0, length(names(table(x[,n+1]))))
   names(classes) <- names(table(x[,n+1]))
+  ## зависимость веса от расстояния
   for(i in 1:m){
     y <- x[i, n+1]
     dist <- euclideanDistance(x[i,1:n],z)
