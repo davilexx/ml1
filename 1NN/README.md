@@ -7,9 +7,12 @@
 ### Программная реализация на языке R
 
 ```R
+## применяем метод
 NN <- function(xl, z) {
+  ## сортируем выборку согласно классифицируемого объекта
   orderedXl <- sortObjectsByDist(xl, z)
   n <- dim(orderedXl)[2] - 1
+  ## получаем классы первых соседей
   classes <- orderedXl[1, n + 1]
   return (classes)
 }
