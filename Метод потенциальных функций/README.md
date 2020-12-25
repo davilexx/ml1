@@ -4,19 +4,22 @@
 
 ### Программная реализация на языке R
 ```R
-potentialF <- function(x, z, g, F, h=c()) {
+potentialF <- function(x, z, g, F, h = c()) {
     m <- dim(x)[1]
     n <- dim(x)[2]-1
-    if(sum(h) == 0) h <- c(rep(1, m/3), rep(0.25,(m - m / 3)))
-    classes <- rep(0, length(names(table(x[,n+1]))))
+    if(sum(h) == 0) h <- c(rep(1, m / 3), rep(0.25,(m - m / 3)))
+    classes <- rep(0, length(names(table(x[, n + 1]))))
+    ## таблица для весов класса
     names(classes) <- names(table(x[,n+1]))
+    ## для каждого объекта берётся его класс
     for(i in 1:m) {
         y <- x[i, n+1]
-        dist <- Distanse(x[i,1:n],z)
-        w <- F(dist/h[i]) * g[i]
+        dist <- Distanse(x[i, 1:n], z)
+        w <- F(dist / h[i]) * g[i]
         classes[y] <- classes[y] + w
     }
     if(sum(classes) > 0) {
+        ## сохраняем класс с самым большим весом
         class <- names(which.max(classes))
     } else {
         class <- "unknown"
