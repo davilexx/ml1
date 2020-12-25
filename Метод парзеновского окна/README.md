@@ -45,13 +45,14 @@ parsen <- function(x, z, h, F) {
   n <- dim(x)[2]-1
   classes <- rep(0, length(names(table(x[,n+1]))))
   names(classes) <- names(table(x[,n+1]))
-  ## зависимость веса от расстояния
+  ## для каждого объекта выборки берём его класс
   for(i in 1:m){
     y <- x[i, n+1]
     dist <- euclideanDistance(x[i,1:n],z)
     w <- F(dist/h)
     classes[y] <- classes[y] + w
   }
+  ## возвращаем класс с максимальным весом
   if(sum(classes) > 0) {
     class <- names(which.max(classes))
   } else {
